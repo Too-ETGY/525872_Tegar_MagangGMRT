@@ -1,8 +1,8 @@
 import math
 import matplotlib.pyplot as plt
-from myik import inverse_kinematics
+from ik2 import inverse_kinematics
 
-def visualize_arm_3d(deg1, deg2, deg3, deg4, l1, l2, l3, l0, x, y, z):
+def visualize_arm_3d(deg1, deg2, deg3, deg4, l1, l2, l3, x, y, z):
     """
     Visualize the 4-DOF arm in 3D with base height l0.
     
@@ -18,8 +18,8 @@ def visualize_arm_3d(deg1, deg2, deg3, deg4, l1, l2, l3, l0, x, y, z):
     theta4 = math.radians(deg4)
     
     # Local positions in the plane (before global rotation), starting from z=l0
-    joint1 = [0, 0, l0]
-    joint2 = [l1 * math.cos(theta2), 0, l0 + l1 * math.sin(theta2)]
+    joint1 = [0, 0, 0]
+    joint2 = [l1 * math.cos(theta2), 0, l1 * math.sin(theta2)]
     joint3 = [joint2[0] + l2 * math.cos(theta2 + theta3), 0, joint2[2] + l2 * math.sin(theta2 + theta3)]
     end = [joint3[0] + l3 * math.cos(theta2 + theta3 + theta4), 0, joint3[2] + l3 * math.sin(theta2 + theta3 + theta4)]
     
@@ -62,13 +62,12 @@ def visualize_arm_3d(deg1, deg2, deg3, deg4, l1, l2, l3, l0, x, y, z):
 
 # Example usage
 if __name__ == "__main__":
-    l0 = 2 
-    x, y, z = 10, 8, 8
-    l1, l2, l3 = 7, 10, 3
-    result = inverse_kinematics(x, y, z, l0, l1, l2, l3)
+    x, y, z = 5, 7, 12
+    l1, l2, l3 = 10, 10, 3
+    result = inverse_kinematics(x, y, z, l1, l2, l3)
     if result:
         deg1, deg2, deg3, deg4 = result
         print(f"Deg1 (Base): {deg1:.2f}°, Deg2: {deg2:.2f}°, Deg3: {deg3:.2f}°, Deg4: {deg4:.2f}°")
-        visualize_arm_3d(deg1, deg2, deg3, deg4, l1, l2, l3, l0, x, y, z)
+        visualize_arm_3d(deg1, deg2, deg3, deg4, l1, l2, l3, x, y, z)
     else:
         print("Target unreachable")
