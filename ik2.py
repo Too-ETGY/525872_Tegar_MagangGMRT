@@ -46,8 +46,8 @@ def inverse_kinematics(x, y, z, l1, l2, l3):
     return deg1, deg2, deg3, deg4
 
 if __name__ == "__main__": 
-    x, y, z = 10, 8, 8
-    l1, l2, l3 = 7, 10, 3
+    x, y, z = 2, 1, 1.5
+    l1, l2, l3 = 1, 1, 1
     result = inverse_kinematics(x, y, z, l1, l2, l3)
     if result:
         deg1, deg2, deg3, deg4 = result
