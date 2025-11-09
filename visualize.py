@@ -1,6 +1,6 @@
 import math
 import matplotlib.pyplot as plt
-from ik2 import inverse_kinematics
+from ik import inverse_kinematics
 
 def visualize_arm_3d(deg1, deg2, deg3, deg4, l1, l2, l3, x, y, z):
     """
